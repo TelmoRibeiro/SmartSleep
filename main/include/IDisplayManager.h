@@ -29,4 +29,19 @@ public:
      *  @return true if the animation sequence has finished playing, false otherwise
      */
     virtual bool isDone(void) const = 0;
+
+    /** @brief show static text on the display
+     *  @param text the static text to display
+     *  @param x    the x-coordinate for the text
+     *  @param y    the y-coordinate for the text
+    */
+    virtual void showStaticText(const char* text, int32_t x, int32_t y) = 0;
+
+   /** @brief show scrollable text on the display
+    *  @param text            the scrollable text to display
+    *  @param scrollDirection the direction of the scroll
+    *  @param x               the x-coordinate for the text
+    *  @param y               the y-coordinate for the text
+    */ 
+    virtual void showScrollableText(const char* text, ScrollDirection scrollDirection, int32_t x, int32_t y) = 0;
 };
