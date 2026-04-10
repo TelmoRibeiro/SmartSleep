@@ -4,10 +4,10 @@
 #include "ArduinoGraphics.h"
 #include "Arduino_LED_Matrix.h"
 
-#define RED_HEX_COLOUR 0xFFFFFFFFU
-
 class LEDMatrixDisplayManager : public IDisplayManager {
 private:
+    static constexpr uint32_t RED_HEX_COLOUR = 0xFFFFFFFFU;
+
     /** @brief internal state of a LEDMatrixDisplayManager instance
      */
     struct LEDMatrixDisplayManagerContext {
