@@ -30,10 +30,8 @@ void LEDMatrixDisplayManager::initialise(void) {
     this->context.isInitialised = true;
 }
 
+/// assumes context is intialised on call
 void LEDMatrixDisplayManager::start(void) {
-    if (this->isInitialised() == true) {
-        return;
-    }
     this->context.LEDMatrix.begin();
 }
 
