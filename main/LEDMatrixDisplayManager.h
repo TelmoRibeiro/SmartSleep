@@ -44,7 +44,7 @@ private:
 
     /** @brief converts IDisplayManagerTypes::TextFontSize to Arduino's Font
      */
-    const Font& toArduinoFont(TextFontSize fontSize);
+    const Font& toArduinoFont(TextFontSize fontSize) const;
 
     /** @brief starts the display
      */
