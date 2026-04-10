@@ -1,12 +1,9 @@
 #include "LEDMatrixDisplayManager.h"
 
 LEDMatrixDisplayManager::LEDMatrixDisplayManager(void) : context({}) {
-    this->context.isInitialised = false;
 }
 
 LEDMatrixDisplayManager::~LEDMatrixDisplayManager(void) {
-    delete[] this->context.text.content;
-    this->context.isInitialised = false;
 }
 
 const Font& LEDMatrixDisplayManager::toArduinoFont(TextFontSize fontSize) const {
