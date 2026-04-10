@@ -1,0 +1,138 @@
+#pragma once
+
+#include "include/IDisplayManager.h"
+#include "ArduinoGraphics.h"
+#include "Arduino_LED_Matrix.h"
+
+#define RED_HEX_COLOUR 0xFFFFFFFFU
+
+class LEDMatrixDisplayManager : public IDisplayManager {
+private:
+    /** @brief internal state of a LEDMatrixDisplayManager instance
+     */
+    struct LEDMatrixDisplayManagerContext {
+        mutable ArduinoLEDMatrix LEDMatrix;
+        bool shouldLoop    = false;
+        bool isInitialised = false;
+
+        struct TextContext {
+            char* content                   = nullptr;
+            TextFontSize fontSize           = TextFontSize::Font4x6;
+            uint32_t colour                 = RED_HEX_COLOUR;
+            ScrollDirection scrollDirection = ScrollDirection::Static;
+            int32_t x                       = 0U;
+            int32_t y                       = 1U;
+            uint32_t scrollSpeedMS          = 100U;
+        } text;
+    } context;
+
+    /** @brief creates the LEDMatrixDisplayManager
+     */
+    LEDMatrixDisplayManager(void);
+
+    /** @brief destroys the LEDMatrixDisplayManager
+     */
+    ~LEDMatrixDisplayManager(void);
+
+    /** @brief copy construction of a LEDMatrixDisplayManager instance is not allowed -- singleton
+     */
+    LEDMatrixDisplayManager(const LEDMatrixDisplayManager&) = delete;
+
+    /** @brief copy assignment of a LEDMatrixDisplayManager instance is not allowed -- singleton
+     */
+    LEDMatrixDisplayManager& operator=(const LEDMatrixDisplayManager&) = delete;
+
+    /** @brief converts IDisplayManagerTypes::TextFontSize to Arduino's Font
+     */
+    const Font& toArduinoFont(TextFontSize fontSize);
+
+public:
+    /** @brief gets a reference to a LEDMatrixDisplayManager instance -- singleton
+     *  @return the reference to the LEDMatrixDisplayManager instance -- singleton
+     */
+    static LEDMatrixDisplayManager* getInstance(void);
+
+    /** @brief checks whether the LEDMatrixDisplayManager instance is initialsed 
+     *  @return true if the LEDMatrixDisplayManager instance is intialised, false otherwise
+     */
+    bool isInitialised(void) const;
+
+    /** @brief initialises the LEDMatrixDisplayManager instance
+     *  @param textFontSize the font size for the text shown on the display (default = 4x6)
+    */
+    void initialise(void);
+
+    /** @brief starts the display
+     */
+    void start(void) override;
+
+    /** @brief clears the display
+     */
+    void clear(void) override;
+
+    /** @brief plays the animation sequence on the display
+     *  @param shouldLoop whether to loop the animation sequence sequence (default=true)
+     */
+    void play(bool shouldLoop = true) override;
+
+    /** @brief updates the display manager -- to be called each iteration of the main loop
+     */
+    void update(void) override;
+
+    /** @brief checks whether the animation sequence has finished playing
+     *  @return true if the animation sequence has finished playing, false otherwise
+     */
+    bool isDone(void) const override;
+
+    /** @brief show static text on the display
+     *  @param text the static text to display
+     *  @param x    the x-coordinate for the text (default = 0)
+     *  @param y    the y-coordinate for the text (default = 1)
+    */
+    void showStaticText(const char* text, int32_t x = 0, int32_t y = 1) override;
+
+   /** @brief show scrollable text on the display
+    *  @param text            the scrollable text to display
+    *  @param scrollDirection the direction of the scroll
+    *  @param x               the x-coordinate for the text (default = 0)
+    *  @param y               the y-coordinate for the text (default = 1)
+    */ 
+    void showScrollableText(const char* text, ScrollDirection scrollDirection, int32_t x = 0, int32_t y = 1) override;
+
+    /** @brief sets the font size for the text shown on the display
+     *  @param textFontSize the font size for the text shown on the display
+     */
+    void setTextFontSize(TextFontSize textFontSize) override;
+
+    /** @brief gets the font size from the text shown on the display
+     *  @return the font size from the text shown on the display
+     */
+    TextFontSize getTextFontSize(void) const override;
+
+    /** @brief sets the colour for the text shown on the display
+     *  @param textColour the colour for the text shown on the display (default = RED)
+     */
+    void setTextColour(uint32_t textColour = RED_HEX_COLOUR) override;
+
+    /** @brief gets the colour from the text shown on the display
+     *  @return the colour from the text shown on the display
+     */
+    uint32_t getTextColour(void) const override;
+
+    /** @brief sets the scroll speed for the text shown on the display
+     *  @param scrollSpeedMS the scroll speed in milliseconds for the text shown on the display
+     */
+    void setScrollSpeedMS(uint32_t scrollSpeedMS) override;
+
+    /** @brief gets the scroll speed from the text shown on the display
+     *  @return the scroll speed in milliseconds from the text shown on the display
+     */
+    uint32_t getScrollSpeedMS(void) const override;
+
+    /** @brief sets the state of a singular pixel on the display
+     *  @param row  the row of the pixel to be set
+     *  @param col  the column of the pixel to be set
+     *  @param isOn the state of the pixel to be set
+     */
+    void setPixel(uint8_t row, uint8_t col, bool isOn) override;
+};
