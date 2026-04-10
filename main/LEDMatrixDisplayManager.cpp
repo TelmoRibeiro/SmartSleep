@@ -1,5 +1,4 @@
 #include "LEDMatrixDisplayManager.h"
-#include <cstring>
 
 LEDMatrixDisplayManager::LEDMatrixDisplayManager(void) : context({}) {
     this->context.isInitialised = false;
@@ -58,9 +57,9 @@ void LEDMatrixDisplayManager::play(bool shouldLoop) {
     context.LEDMatrix.textScrollSpeed(this->context.text.scrollSpeedMS);
     context.LEDMatrix.textFont(toArduinoFont(this->context.text.fontSize));
     context.LEDMatrix.beginText(this->context.text.x, this->context.text.y, this->context.text.colour);
-    context.LEDMatrix.println(this->context.text.content);
     context.LEDMatrix.endText(static_cast<int32_t>(this->context.text.scrollDirection));
     context.LEDMatrix.endDraw();
+    this->context.LEDMatrix.println(this->context.text.content.c_str());
 }
 
 void LEDMatrixDisplayManager::update(void) {
@@ -72,25 +71,21 @@ void LEDMatrixDisplayManager::update(void) {
     }
 }
 
-void LEDMatrixDisplayManager::showStaticText(const char* text, int32_t x, int32_t y) {
+void LEDMatrixDisplayManager::showStaticText(const std::string& text, int32_t x, int32_t y) {
     if (this->isInitialised() == false) {
         return;
     }
-    delete[] this->context.text.content;
-    this->context.text.content = new char[strlen(text) + 1];
-    strcpy(this->context.text.content, text);
+    this->context.text.content = text;
     this->context.text.x = x;
     this->context.text.y = y;
     this->context.text.scrollDirection = ScrollDirection::Static;
 }
 
-void LEDMatrixDisplayManager::showScrollableText(const char* text, ScrollDirection scrollDirection, int32_t x, int32_t y) {
+void LEDMatrixDisplayManager::showScrollableText(const std::string& text, ScrollDirection scrollDirection, int32_t x, int32_t y) {
     if (this->isInitialised() == false) {
         return;
     }
-    delete[] this->context.text.content;
-    this->context.text.content = new char[strlen(text) + 1];
-    strcpy(this->context.text.content, text);
+    this->context.text.content = text;
     this->context.text.x = x;
     this->context.text.y = y;
     this->context.text.scrollDirection = scrollDirection;
