@@ -47,14 +47,14 @@ void LEDMatrixDisplayManager::play(bool shouldLoop) {
         return;
     }
     this->context.shouldLoop = shouldLoop;
-    context.LEDMatrix.beginDraw();
-    context.LEDMatrix.stroke(this->context.text.colour);
-    context.LEDMatrix.textScrollSpeed(this->context.text.scrollSpeedMS);
-    context.LEDMatrix.textFont(toArduinoFont(this->context.text.fontSize));
-    context.LEDMatrix.beginText(this->context.text.x, this->context.text.y, this->context.text.colour);
-    context.LEDMatrix.endText(static_cast<int32_t>(this->context.text.scrollDirection));
-    context.LEDMatrix.endDraw();
+    this->context.LEDMatrix.beginDraw();
+    this->context.LEDMatrix.stroke(this->context.text.colour);
+    this->context.LEDMatrix.textScrollSpeed(this->context.text.scrollSpeedMS);
+    this->context.LEDMatrix.textFont(toArduinoFont(this->context.text.fontSize));
+    this->context.LEDMatrix.beginText(this->context.text.x, this->context.text.y, this->context.text.colour);
     this->context.LEDMatrix.println(this->context.text.content.c_str());
+    this->context.LEDMatrix.endText(static_cast<int32_t>(this->context.text.scrollDirection));
+    this->context.LEDMatrix.endDraw();
 }
 
 void LEDMatrixDisplayManager::update(void) {
