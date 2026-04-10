@@ -9,7 +9,7 @@ LEDMatrixDisplayManager::~LEDMatrixDisplayManager(void) {
     this->context.isInitialised = false;
 }
 
-const Font& LEDMatrixDisplayManager::toArduinoFont(TextFontSize fontSize) {
+const Font& LEDMatrixDisplayManager::toArduinoFont(TextFontSize fontSize) const {
     switch (fontSize) {
         case TextFontSize::Font5x7: return Font_5x7;
         default:                    return Font_4x6;
