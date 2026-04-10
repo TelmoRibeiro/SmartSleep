@@ -46,6 +46,10 @@ private:
      */
     const Font& toArduinoFont(TextFontSize fontSize);
 
+    /** @brief starts the display
+     */
+    void start(void) override;
+
 public:
     /** @brief gets a reference to a LEDMatrixDisplayManager instance -- singleton
      *  @return the reference to the LEDMatrixDisplayManager instance -- singleton
@@ -61,10 +65,6 @@ public:
      *  @param textFontSize the font size for the text shown on the display (default = 4x6)
     */
     void initialise(void);
-
-    /** @brief starts the display
-     */
-    void start(void) override;
 
     /** @brief clears the display
      */

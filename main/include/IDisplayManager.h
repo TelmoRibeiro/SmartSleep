@@ -4,14 +4,15 @@
 #include "IDisplayManagerTypes.h"
 
 class IDisplayManager {
+private:
+    /** @brief starts the display
+     */
+    virtual void start(void) = 0;
+
 public:
     /** @brief destroys the display manager
      */
     virtual ~IDisplayManager(void) = default;
-
-    /** @brief starts the display
-     */
-    virtual void start(void) = 0;
 
     /** @brief clears the display
      */
