@@ -44,4 +44,34 @@ public:
     *  @param y               the y-coordinate for the text
     */ 
     virtual void showScrollableText(const char* text, ScrollDirection scrollDirection, int32_t x, int32_t y) = 0;
+
+    /** @brief sets the font size for the text shown on the display
+     *  @param textFontSize the font size for the text shown on the display
+     */
+    virtual void setTextFontSize(TextFontSize textFontSize) = 0;
+
+    /** @brief gets the font size from the text shown on the display
+     *  @return the font size from the text shown on the display
+     */
+    virtual TextFontSize getTextFontSize(void) const = 0;
+
+    /** @brief sets the colour for the text shown on the display
+     *  @param textColour the colour for the text shown on the display
+     */
+    virtual void setTextColour(uint32_t textColour) = 0;
+
+    /** @brief gets the colour from the text shown on the display
+     *  @return the colour from the text shown on the display
+     */
+    virtual uint32_t getTextColour(void) const = 0;
+
+    /** @brief sets the scroll speed for the text shown on the display
+     *  @param scrollSpeedMS the scroll speed in milliseconds for the text shown on the display
+     */
+    virtual void setScrollSpeedMS(uint32_t scrollSpeedMS) = 0;
+
+    /** @brief gets the scroll speed from the text shown on the display
+     *  @return the scroll speed in milliseconds from the text shown on the display
+     */
+    virtual uint32_t getScrollSpeedMS(void) const = 0;
 };
