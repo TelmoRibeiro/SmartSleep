@@ -74,11 +74,4 @@ public:
      *  @return the scroll speed in milliseconds from the text shown on the display
      */
     virtual uint32_t getScrollSpeedMS(void) const = 0;
-
-    /** @brief sets the state of a singular pixel on the display
-     *  @param row  the row of the pixel to be set
-     *  @param col  the column of the pixel to be set
-     *  @param isOn the state of the pixel to be set
-     */
-    virtual void setPixel(uint8_t row, uint8_t col, bool isOn) = 0;
 };
