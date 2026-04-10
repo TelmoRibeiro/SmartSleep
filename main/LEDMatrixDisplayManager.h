@@ -16,7 +16,7 @@ private:
         bool isInitialised = false;
 
         struct TextContext {
-            char* content                   = nullptr;
+            std::string content             = "";
             TextFontSize fontSize           = TextFontSize::Font4x6;
             uint32_t colour                 = RED_HEX_COLOUR;
             ScrollDirection scrollDirection = ScrollDirection::Static;
@@ -89,7 +89,7 @@ public:
      *  @param x    the x-coordinate for the text (default = 0)
      *  @param y    the y-coordinate for the text (default = 1)
     */
-    void showStaticText(const char* text, int32_t x = 0, int32_t y = 1) override;
+    void showStaticText(const std::string& text, int32_t x = 0, int32_t y = 1) override;
 
    /** @brief show scrollable text on the display
     *  @param text            the scrollable text to display
@@ -97,7 +97,7 @@ public:
     *  @param x               the x-coordinate for the text (default = 0)
     *  @param y               the y-coordinate for the text (default = 1)
     */ 
-    void showScrollableText(const char* text, ScrollDirection scrollDirection, int32_t x = 0, int32_t y = 1) override;
+    void showScrollableText(const std::string& text, ScrollDirection scrollDirection, int32_t x = 0, int32_t y = 1) override;
 
     /** @brief sets the font size for the text shown on the display
      *  @param textFontSize the font size for the text shown on the display
