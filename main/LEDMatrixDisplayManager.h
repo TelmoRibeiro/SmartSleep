@@ -11,7 +11,7 @@ private:
     /** @brief internal state of a LEDMatrixDisplayManager instance
      */
     struct LEDMatrixDisplayManagerContext {
-        mutable ArduinoLEDMatrix LEDMatrix;
+        mutable ArduinoLEDMatrix LEDMatrix; /// mutable - boundary between IDisplayManager & Arduino_LED_Matrix
         bool shouldLoop    = false;
         bool isInitialised = false;
 
