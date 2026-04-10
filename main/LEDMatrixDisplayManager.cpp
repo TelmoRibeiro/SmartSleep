@@ -144,13 +144,3 @@ uint32_t LEDMatrixDisplayManager::getScrollSpeedMS(void) const {
     }
     return this->context.text.scrollSpeedMS;
 }
-
-void LEDMatrixDisplayManager::setPixel(uint8_t row, uint8_t col, bool isOn) {
-    if (this->isInitialised() == false) {
-        return;
-    }
-    context.LEDMatrix.beginDraw();
-    context.LEDMatrix.stroke(isOn ? 0xFFFFFFFF : 0);
-    context.LEDMatrix.point(col, row);
-    context.LEDMatrix.endDraw();
-}
