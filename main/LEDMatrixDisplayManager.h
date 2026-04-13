@@ -4,19 +4,19 @@
 #include "ArduinoGraphics.h"
 #include "Arduino_LED_Matrix.h"
 
-#define RED_HEX_COLOUR 0xFFFFFFFFU
-
 class LEDMatrixDisplayManager : public IDisplayManager {
 private:
+    static constexpr uint32_t RED_HEX_COLOUR = 0xFFFFFFFFU;
+
     /** @brief internal state of a LEDMatrixDisplayManager instance
      */
     struct LEDMatrixDisplayManagerContext {
-        mutable ArduinoLEDMatrix LEDMatrix;
+        mutable ArduinoLEDMatrix LEDMatrix; /// mutable - boundary between IDisplayManager & Arduino_LED_Matrix
         bool shouldLoop    = false;
         bool isInitialised = false;
 
         struct TextContext {
-            char* content                   = nullptr;
+            std::string content             = "";
             TextFontSize fontSize           = TextFontSize::Font4x6;
             uint32_t colour                 = RED_HEX_COLOUR;
             ScrollDirection scrollDirection = ScrollDirection::Static;
@@ -44,7 +44,11 @@ private:
 
     /** @brief converts IDisplayManagerTypes::TextFontSize to Arduino's Font
      */
-    const Font& toArduinoFont(TextFontSize fontSize);
+    const Font& toArduinoFont(TextFontSize fontSize) const;
+
+    /** @brief starts the display
+     */
+    void start(void) override;
 
 public:
     /** @brief gets a reference to a LEDMatrixDisplayManager instance -- singleton
@@ -61,10 +65,6 @@ public:
      *  @param textFontSize the font size for the text shown on the display (default = 4x6)
     */
     void initialise(void);
-
-    /** @brief starts the display
-     */
-    void start(void) override;
 
     /** @brief clears the display
      */
@@ -89,7 +89,7 @@ public:
      *  @param x    the x-coordinate for the text (default = 0)
      *  @param y    the y-coordinate for the text (default = 1)
     */
-    void showStaticText(const char* text, int32_t x = 0, int32_t y = 1) override;
+    void showStaticText(const std::string& text, int32_t x = 0, int32_t y = 1) override;
 
    /** @brief show scrollable text on the display
     *  @param text            the scrollable text to display
@@ -97,7 +97,7 @@ public:
     *  @param x               the x-coordinate for the text (default = 0)
     *  @param y               the y-coordinate for the text (default = 1)
     */ 
-    void showScrollableText(const char* text, ScrollDirection scrollDirection, int32_t x = 0, int32_t y = 1) override;
+    void showScrollableText(const std::string& text, ScrollDirection scrollDirection, int32_t x = 0, int32_t y = 1) override;
 
     /** @brief sets the font size for the text shown on the display
      *  @param textFontSize the font size for the text shown on the display
@@ -128,11 +128,4 @@ public:
      *  @return the scroll speed in milliseconds from the text shown on the display
      */
     uint32_t getScrollSpeedMS(void) const override;
-
-    /** @brief sets the state of a singular pixel on the display
-     *  @param row  the row of the pixel to be set
-     *  @param col  the column of the pixel to be set
-     *  @param isOn the state of the pixel to be set
-     */
-    void setPixel(uint8_t row, uint8_t col, bool isOn) override;
 };

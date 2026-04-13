@@ -1,16 +1,18 @@
 #pragma once
 
+#include <string>
 #include "IDisplayManagerTypes.h"
 
 class IDisplayManager {
+private:
+    /** @brief starts the display
+     */
+    virtual void start(void) = 0;
+
 public:
     /** @brief destroys the display manager
      */
     virtual ~IDisplayManager(void) = default;
-
-    /** @brief starts the display
-     */
-    virtual void start(void) = 0;
 
     /** @brief clears the display
      */
@@ -35,7 +37,7 @@ public:
      *  @param x    the x-coordinate for the text
      *  @param y    the y-coordinate for the text
     */
-    virtual void showStaticText(const char* text, int32_t x, int32_t y) = 0;
+    virtual void showStaticText(const std::string& text, int32_t x, int32_t y) = 0;
 
    /** @brief show scrollable text on the display
     *  @param text            the scrollable text to display
@@ -43,7 +45,7 @@ public:
     *  @param x               the x-coordinate for the text
     *  @param y               the y-coordinate for the text
     */ 
-    virtual void showScrollableText(const char* text, ScrollDirection scrollDirection, int32_t x, int32_t y) = 0;
+    virtual void showScrollableText(const std::string& text, ScrollDirection scrollDirection, int32_t x, int32_t y) = 0;
 
     /** @brief sets the font size for the text shown on the display
      *  @param textFontSize the font size for the text shown on the display
@@ -74,11 +76,4 @@ public:
      *  @return the scroll speed in milliseconds from the text shown on the display
      */
     virtual uint32_t getScrollSpeedMS(void) const = 0;
-
-    /** @brief sets the state of a singular pixel on the display
-     *  @param row  the row of the pixel to be set
-     *  @param col  the column of the pixel to be set
-     *  @param isOn the state of the pixel to be set
-     */
-    virtual void setPixel(uint8_t row, uint8_t col, bool isOn) = 0;
 };
