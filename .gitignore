@@ -46,3 +46,6 @@
 
 # Agent-specific files
 *.claude/
+
+# Code-style checks
+*.clang-tidy
