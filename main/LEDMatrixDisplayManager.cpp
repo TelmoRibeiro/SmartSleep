@@ -1,11 +1,5 @@
 #include "LEDMatrixDisplayManager.h"
 
-LEDMatrixDisplayManager::LEDMatrixDisplayManager(void) : context({}) {
-}
-
-LEDMatrixDisplayManager::~LEDMatrixDisplayManager(void) {
-}
-
 const Font& LEDMatrixDisplayManager::toArduinoFont(TextFontSize fontSize) const {
     switch (fontSize) {
         case TextFontSize::Font5x7: return Font_5x7;

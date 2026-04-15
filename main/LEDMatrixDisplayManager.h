@@ -27,11 +27,11 @@ class LEDMatrixDisplayManager : public IDisplayManager {
 
     /** @brief creates the LEDMatrixDisplayManager
      */
-    LEDMatrixDisplayManager(void);
+    LEDMatrixDisplayManager(void) = default;
 
     /** @brief destroys the LEDMatrixDisplayManager
      */
-    ~LEDMatrixDisplayManager(void);
+    ~LEDMatrixDisplayManager(void) override = default;
 
     /** @brief copy construction of a LEDMatrixDisplayManager instance is not allowed -- singleton
      */
