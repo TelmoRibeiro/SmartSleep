@@ -66,9 +66,9 @@ public:
     void clear(void) override;
 
     /** @brief plays the animation sequence on the display
-     *  @param shouldLoop whether to loop the animation sequence sequence (default=true)
+     *  @param shouldLoop whether to loop the animation sequence
      */
-    void play(bool shouldLoop = true) override;
+    void play(bool shouldLoop) override;
 
     /** @brief updates the display manager -- to be called each iteration of the main loop
      */
@@ -81,18 +81,18 @@ public:
 
     /** @brief show static text on the display
      *  @param text the static text to display
-     *  @param x    the x-coordinate for the text (default = 0)
-     *  @param y    the y-coordinate for the text (default = 1)
+     *  @param x    the x-coordinate for the text
+     *  @param y    the y-coordinate for the text
     */
-    void showStaticText(const std::string& text, int32_t x = 0, int32_t y = 1) override;
+    void showStaticText(const std::string& text, int32_t x, int32_t y) override;
 
    /** @brief show scrollable text on the display
     *  @param text            the scrollable text to display
     *  @param scrollDirection the direction of the scroll
-    *  @param x               the x-coordinate for the text (default = 0)
-    *  @param y               the y-coordinate for the text (default = 1)
+    *  @param x               the x-coordinate for the text
+    *  @param y               the y-coordinate for the text
     */ 
-    void showScrollableText(const std::string& text, ScrollDirection scrollDirection, int32_t x = 0, int32_t y = 1) override;
+    void showScrollableText(const std::string& text, ScrollDirection scrollDirection, int32_t x, int32_t y) override;
 
     /** @brief sets the font size for the text shown on the display
      *  @param textFontSize the font size for the text shown on the display
@@ -107,7 +107,7 @@ public:
     /** @brief sets the colour for the text shown on the display
      *  @param textColour the colour for the text shown on the display (default = RED)
      */
-    void setTextColour(uint32_t textColour = RED_HEX_COLOUR) override;
+    void setTextColour(uint32_t textColour) override;
 
     /** @brief gets the colour from the text shown on the display
      *  @return the colour from the text shown on the display
