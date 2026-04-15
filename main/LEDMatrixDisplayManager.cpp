@@ -26,7 +26,7 @@ void LEDMatrixDisplayManager::initialise(void) {
     this->context.isInitialised = true;
 }
 
-/// assumes context is intialised on call
+/// assumes context is initialised on call
 void LEDMatrixDisplayManager::start(void) {
     this->context.LEDMatrix.begin();
 }

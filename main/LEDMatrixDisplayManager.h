@@ -57,7 +57,6 @@ public:
     [[nodiscard]] bool isInitialised(void) const;
 
     /** @brief initialises the LEDMatrixDisplayManager instance
-     *  @param textFontSize the font size for the text shown on the display (default = 4x6)
     */
     void initialise(void);
 
