@@ -46,10 +46,6 @@ public:
      */
     LEDMatrixDisplayManager& operator=(const LEDMatrixDisplayManager&) = delete;
 
-    /** @brief converts IDisplayManagerTypes::TextFontSize to Arduino's Font
-     */
-    const Font& toArduinoFont(TextFontSize fontSize) const;
-
     /** @brief gets a reference to a LEDMatrixDisplayManager instance -- singleton
      *  @return the reference to the LEDMatrixDisplayManager instance -- singleton
      */

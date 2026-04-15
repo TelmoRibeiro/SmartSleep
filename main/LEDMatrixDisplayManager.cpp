@@ -1,6 +1,8 @@
 #include "LEDMatrixDisplayManager.h"
 
-const Font& LEDMatrixDisplayManager::toArduinoFont(TextFontSize fontSize) const {
+/** @brief converts IDisplayManagerTypes::TextFontSize to Arduino's Font
+ */
+static const Font& toArduinoFont(TextFontSize fontSize) {
     switch (fontSize) {
         case TextFontSize::Font5x7: return Font_5x7;
         default:                    return Font_4x6;
