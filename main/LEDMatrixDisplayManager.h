@@ -10,12 +10,12 @@ class LEDMatrixDisplayManager : public IDisplayManager {
     /** @brief internal state of a LEDMatrixDisplayManager instance
      */
     struct LEDMatrixDisplayManagerContext {
-        mutable ArduinoLEDMatrix LEDMatrix; /// mutable - boundary between IDisplayManager & Arduino_LED_Matrix
+        mutable ArduinoLEDMatrix LEDMatrix{}; /// mutable - boundary between IDisplayManager & Arduino_LED_Matrix
         bool shouldLoop    = false;
         bool isInitialised = false;
 
         struct TextContext {
-            std::string content             = "";
+            std::string content;
             TextFontSize fontSize           = TextFontSize::Font4x6;
             uint32_t colour                 = RED_HEX_COLOUR;
             ScrollDirection scrollDirection = ScrollDirection::Static;
