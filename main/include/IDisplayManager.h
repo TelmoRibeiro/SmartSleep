@@ -4,7 +4,6 @@
 #include "IDisplayManagerTypes.h"
 
 class IDisplayManager {
-private:
     /** @brief starts the display
      */
     virtual void start(void) = 0;
