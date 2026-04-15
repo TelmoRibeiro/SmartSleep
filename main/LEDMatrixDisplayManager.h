@@ -33,6 +33,11 @@ class LEDMatrixDisplayManager : public IDisplayManager {
      */
     ~LEDMatrixDisplayManager(void) override = default;
 
+    /** @brief starts the display
+     */
+    void start(void) override;
+
+public:
     /** @brief copy construction of a LEDMatrixDisplayManager instance is not allowed -- singleton
      */
     LEDMatrixDisplayManager(const LEDMatrixDisplayManager&) = delete;
@@ -45,11 +50,6 @@ class LEDMatrixDisplayManager : public IDisplayManager {
      */
     const Font& toArduinoFont(TextFontSize fontSize) const;
 
-    /** @brief starts the display
-     */
-    void start(void) override;
-
-public:
     /** @brief gets a reference to a LEDMatrixDisplayManager instance -- singleton
      *  @return the reference to the LEDMatrixDisplayManager instance -- singleton
      */
