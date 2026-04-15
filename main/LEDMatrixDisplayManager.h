@@ -56,10 +56,10 @@ public:
      */
     static LEDMatrixDisplayManager* getInstance(void);
 
-    /** @brief checks whether the LEDMatrixDisplayManager instance is initialsed 
-     *  @return true if the LEDMatrixDisplayManager instance is intialised, false otherwise
+    /** @brief checks whether the LEDMatrixDisplayManager instance is initialised
+     *  @return true if the LEDMatrixDisplayManager instance is initialised, false otherwise
      */
-    bool isInitialised(void) const;
+    [[nodiscard]] bool isInitialised(void) const;
 
     /** @brief initialises the LEDMatrixDisplayManager instance
      *  @param textFontSize the font size for the text shown on the display (default = 4x6)
@@ -82,7 +82,7 @@ public:
     /** @brief checks whether the animation sequence has finished playing
      *  @return true if the animation sequence has finished playing, false otherwise
      */
-    bool isDone(void) const override;
+    [[nodiscard]] bool isDone(void) const override;
 
     /** @brief show static text on the display
      *  @param text the static text to display
@@ -107,7 +107,7 @@ public:
     /** @brief gets the font size from the text shown on the display
      *  @return the font size from the text shown on the display
      */
-    TextFontSize getTextFontSize(void) const override;
+    [[nodiscard]] TextFontSize getTextFontSize(void) const override;
 
     /** @brief sets the colour for the text shown on the display
      *  @param textColour the colour for the text shown on the display (default = RED)
@@ -117,7 +117,7 @@ public:
     /** @brief gets the colour from the text shown on the display
      *  @return the colour from the text shown on the display
      */
-    uint32_t getTextColour(void) const override;
+    [[nodiscard]] uint32_t getTextColour(void) const override;
 
     /** @brief sets the scroll speed for the text shown on the display
      *  @param scrollSpeedMS the scroll speed in milliseconds for the text shown on the display
@@ -127,5 +127,5 @@ public:
     /** @brief gets the scroll speed from the text shown on the display
      *  @return the scroll speed in milliseconds from the text shown on the display
      */
-    uint32_t getScrollSpeedMS(void) const override;
+    [[nodiscard]] uint32_t getScrollSpeedMS(void) const override;
 };
