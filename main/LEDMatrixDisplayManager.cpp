@@ -1,12 +1,8 @@
 #include "LEDMatrixDisplayManager.h"
 
-LEDMatrixDisplayManager::LEDMatrixDisplayManager(void) : context({}) {
-}
-
-LEDMatrixDisplayManager::~LEDMatrixDisplayManager(void) {
-}
-
-const Font& LEDMatrixDisplayManager::toArduinoFont(TextFontSize fontSize) const {
+/** @brief converts IDisplayManagerTypes::TextFontSize to Arduino's Font
+ */
+static const Font& toArduinoFont(TextFontSize fontSize) {
     switch (fontSize) {
         case TextFontSize::Font5x7: return Font_5x7;
         default:                    return Font_4x6;
@@ -30,7 +26,7 @@ void LEDMatrixDisplayManager::initialise(void) {
     this->context.isInitialised = true;
 }
 
-/// assumes context is intialised on call
+/// assumes context is initialised on call
 void LEDMatrixDisplayManager::start(void) {
     this->context.LEDMatrix.begin();
 }

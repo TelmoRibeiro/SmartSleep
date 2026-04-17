@@ -1,6 +1,6 @@
 #pragma once
 
-#include <stdint.h>
+#include <cstdint>
 
 enum class TextFontSize : uint8_t {
     Font4x6,
