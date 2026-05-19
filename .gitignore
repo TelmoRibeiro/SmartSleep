@@ -49,3 +49,6 @@
 
 # Code-style checks
 *.clang-tidy
+
+# CMake build output
+cmake-build-debug/
