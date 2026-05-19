@@ -41,11 +41,14 @@
 *.dwo
 
 # IDE-specific files
-*.vscode/
-*.idea/
+.vscode/
+.idea/
 
 # Agent-specific files
-*.claude/
+.claude/
 
 # Code-style checks
 *.clang-tidy
+
+# CMake build output
+cmake-build-debug/
